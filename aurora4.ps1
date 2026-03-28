@@ -3438,3 +3438,5 @@ $script:sidebarPanel.BringToFront(); $script:sidebarIndicator.BringToFront()
 Apply-Theme -theme $script:currentTheme
 
 [System.Windows.Forms.Application]::Run($form)
+
+ale jaja
