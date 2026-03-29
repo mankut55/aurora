@@ -2702,7 +2702,9 @@ function Add-TodoRow {
             $tagObjD = $parentRow.Tag
             $catD = if ($tagObjD -is [PSCustomObject] -and $tagObjD.CreatedAt) { $tagObjD.CreatedAt } else { "$tagObjD" }
             $natD = if ($tagObjD -is [PSCustomObject] -and $tagObjD.Notes)     { $tagObjD.Notes }     else { "" }
-            Add-ToHistory -text $cbDel.Text -done $cbDel.Checked -createdAt $catD -notes $natD -reason "usunieto"
+            if (-not $cbDel.Checked) {
+                Add-ToHistory -text $cbDel.Text -done $false -createdAt $catD -notes $natD -reason "usunieto"
+            }
         }
         $script:todoFlow.Controls.Remove($parentRow)
         $parentRow.Dispose()
@@ -3248,10 +3250,10 @@ $script:searchBox = New-Object System.Windows.Forms.TextBox
 $script:searchBox.Size = New-Object System.Drawing.Size(210, 26); $script:searchBox.Location = New-Object System.Drawing.Point(($bottomPanel.Width - 210 - 10), 14)
 $script:searchBox.Anchor = 'Bottom, Right'; $script:searchBox.BackColor = [System.Drawing.Color]::FromArgb(8, 18, 32)
 $script:searchBox.ForeColor = [System.Drawing.Color]::FromArgb(65, 110, 90); $script:searchBox.BorderStyle = 'FixedSingle'
-$script:searchBox.Font = New-Object System.Drawing.Font('Segoe UI', 9); $script:searchBox.Text = '?? Szukaj aplikacji...'
+$script:searchBox.Font = New-Object System.Drawing.Font('Segoe UI', 9); $script:searchBox.Text = 'Szukaj aplikacji...'
 $bottomPanel.Controls.Add($script:searchBox)
 
-$script:themeLabels = @("Aurora", "Ciemny", "Jasny", "Matowy (Szk�o)")
+$script:themeLabels = @("Aurora", "Ciemny", "Jasny", "Matowy (Szkło)")
 
 function Show-SettingsWindow {
     $thm = $script:currentTheme
