@@ -1001,7 +1001,7 @@ function Get-Settings {
 }
 
 function Save-Settings {
-    param([int]$tileSize, [int]$theme = -1, [string]$city = "")
+    param([int]$tileSize, [int]$theme = -1, [string]$city = $null)
     $d = Read-AuroraData
     if (-not $d.settings) { $d | Add-Member -NotePropertyName settings -NotePropertyValue ([PSCustomObject]@{}) -Force }
     $d.settings | Add-Member -NotePropertyName TileSize -NotePropertyValue $tileSize -Force
