@@ -2,7 +2,7 @@
 Add-Type -AssemblyName System.Drawing
 
 # ===========================================================
-#   C# — WinAPI + LockButton + SimpleSlider + AppTile + AuroraDeck
+#   C# � WinAPI + LockButton + SimpleSlider + AppTile + AuroraDeck
 # ===========================================================
 $_needsCompile = $false
 try {
@@ -28,7 +28,7 @@ public class WinAPI {
     public const int HTCAPTION = 0x2;
 }
 
-// ─── Double Buffered Panels (Fix Migotania) ──────────────────────────────────
+// ��� Double Buffered Panels (Fix Migotania) ����������������������������������
 public class DBPanel : Panel {
     public DBPanel() {
         SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint |
@@ -45,7 +45,7 @@ public class DBFlowPanel : FlowLayoutPanel {
     }
 }
 
-// ─── AuroraTimer — jeden globalny timer dla wszystkich kontrolek ──────────────
+// ��� AuroraTimer � jeden globalny timer dla wszystkich kontrolek ��������������
 public static class AuroraTimer {
     private static readonly Timer _timer;
     public  static          float Time { get; private set; }
@@ -65,7 +65,7 @@ public static class AuroraTimer {
     public static void Resume() { }
 }
 
-// ─── LockButton ──────────────────────────────────────────────────────────────
+// ��� LockButton ��������������������������������������������������������������
 public class LockButton : Control {
     private bool  _locked  = true;
     private bool  _hover   = false;
@@ -152,7 +152,7 @@ public class LockButton : Control {
     }
 }
 
-// ─── PinButton ───────────────────────────────────────────────────────────────
+// ��� PinButton ���������������������������������������������������������������
 public class PinButton : Control {
     private bool  _pinned  = false;
     private bool  _hover   = false;
@@ -246,7 +246,7 @@ public class PinButton : Control {
     }
 }
 
-// ─── SimpleSlider ────────────────────────────────────────────────────────────
+// ��� SimpleSlider ������������������������������������������������������������
 public class SimpleSlider : Control {
     private int   _min = 70, _max = 180, _value = 110;
     private bool  _drag = false;
@@ -324,7 +324,7 @@ public class SimpleSlider : Control {
             thumbC1    = Color.FromArgb((int)(160 * pulse), 130, 130, 130);
             thumbC2    = Color.FromArgb((int)(220 * pulse), 170, 170, 170);
             thumbBorder= Color.FromArgb((int)(230 * pulse), 160, 160, 160);
-        } else if (theme == 3) { // Szkło (Matowy)
+        } else if (theme == 3) { // Szk�o (Matowy)
             trackBg    = Color.FromArgb(60, 80, 120, 160);
             trackFill1 = Color.FromArgb(160, 130, 180, 220);
             trackFill2 = Color.FromArgb(240, 160, 210, 255);
@@ -358,7 +358,7 @@ public class SimpleSlider : Control {
     }
 }
 
-// ─── AppTile ─────────────────────────────────────────────────────────────────
+// ��� AppTile �����������������������������������������������������������������
 public class AppTile : Control {
     public string AppName    { get; set; }
     public string AppPath    { get; set; }
@@ -433,13 +433,13 @@ public class AppTile : Control {
             borderColor = _hover ? Color.FromArgb(210, 110, 110, 110) : Color.FromArgb(140, 68, 68, 68);
             textColor   = Color.FromArgb(_hover ? 245 : 185, 195, 195, 195);
             glowColor   = Color.FromArgb(28, 100, 100, 100);
-        } else if (theme == 3) { // Szkło (Matowy)
+        } else if (theme == 3) { // Szk�o (Matowy)
             bgA       = _hover ? 130 : 70;
             bgColor   = Color.FromArgb(bgA, 130, 180, 220);
             borderColor = _hover ? Color.FromArgb(170, 180, 220, 255) : Color.FromArgb(90, 120, 160, 200);
             textColor   = Color.FromArgb(_hover ? 255 : 220, 240, 245, 255);
             glowColor   = Color.FromArgb(30, 100, 180, 255);
-        } else { // Aurora (domyślny)
+        } else { // Aurora (domy�lny)
             bgA       = _hover ? 78 : 55;
             bgColor   = Color.FromArgb(bgA, 10, 32, 20);
             borderColor = _hover
@@ -496,14 +496,14 @@ public class AppTile : Control {
                 using (var rf  = new Font("Segoe UI", 8.5f, FontStyle.Bold))
                 using (var rfb = new SolidBrush(Color.FromArgb(240, 255, 200, 200))) {
                     var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-                    g.DrawString("x", rf, rfb, new RectangleF(rb.X + ox, rb.Y, rb.Width, rb.Height), sf);
+                    g.DrawString("×", rf, rfb, new RectangleF(rb.X + ox, rb.Y, rb.Width, rb.Height), sf);
                 }
             }
         }
     }
 }
 
-// ─── AuroraDeck (main form) ───────────────────────────────────────────────────
+// ��� AuroraDeck (main form) ���������������������������������������������������
 public class AuroraDeck : Form {
     public const string DECK_VER = "magnet_glass6";
 
@@ -642,7 +642,7 @@ public class AuroraDeck : Form {
         int W = Width, H = Height;
 
         if (ThemeNow == 0) {
-            // ── AURORA ───────────────────────────────────────────────────────
+            // �� AURORA �������������������������������������������������������
             if (_bgBmp != null && _cachedSz == ClientSize) g.DrawImage(_bgBmp, 0, 0);
             if (_starSX != null) {
                 for (int i = 0; i < 100; i++) {
@@ -723,12 +723,12 @@ public class AuroraDeck : Form {
             using(var pb=new SolidBrush(Color.FromArgb(fA0,255,120,100))){ g.FillRectangle(pb,R0); g.DrawRectangle(p,R0); }
             using(var f=new Font("Segoe UI",14f))
             using(var br=new SolidBrush(Color.FromArgb(220,255,200,190))){
-                var sz=g.MeasureString("x",f);
-                g.DrawString("x",f,br,R0.X+(R0.Width-sz.Width)/2,R0.Y+(R0.Height-sz.Height)/2-1);
+                var sz=g.MeasureString("×",f);
+                g.DrawString("×",f,br,R0.X+(R0.Width-sz.Width)/2,R0.Y+(R0.Height-sz.Height)/2-1);
             }
 
         } else if (ThemeNow == 1) {
-            // ── CIEMNY ───────────────────────────────────────────────────────
+            // �� CIEMNY �������������������������������������������������������
             if (_bgBmp != null && _cachedSz == ClientSize) g.DrawImage(_bgBmp, 0, 0);
             {
                 float _lp   = (float)Math.Sin(_time * 3.5f) * 0.16f + 0.84f;
@@ -779,12 +779,12 @@ public class AuroraDeck : Form {
             using(var pb=new SolidBrush(Color.FromArgb(fA1,155,70,70))){ g.FillRectangle(pb,R1); g.DrawRectangle(p,R1); }
             using(var f=new Font("Segoe UI",14f))
             using(var br=new SolidBrush(Color.FromArgb(220,235,210,210))){
-                var sz=g.MeasureString("x",f);
-                g.DrawString("x",f,br,R1.X+(R1.Width-sz.Width)/2,R1.Y+(R1.Height-sz.Height)/2-1);
+                var sz=g.MeasureString("×",f);
+                g.DrawString("×",f,br,R1.X+(R1.Width-sz.Width)/2,R1.Y+(R1.Height-sz.Height)/2-1);
             }
 
         } else if (ThemeNow == 2) {
-            // ── JASNY ────────────────────────────────────────────────────────
+            // �� JASNY ��������������������������������������������������������
             if (_bgBmp != null && _cachedSz == ClientSize) g.DrawImage(_bgBmp, 0, 0);
             {
                 float _lp   = (float)Math.Sin(_time * 3.5f) * 0.16f + 0.84f;
@@ -835,12 +835,12 @@ public class AuroraDeck : Form {
             using(var pb=new SolidBrush(Color.FromArgb(fA2,200,65,65))){ g.FillRectangle(pb,R2); g.DrawRectangle(p,R2); }
             using(var f=new Font("Segoe UI",14f))
             using(var br=new SolidBrush(Color.FromArgb(240,255,255,255))){
-                var sz=g.MeasureString("x",f);
-                g.DrawString("x",f,br,R2.X+(R2.Width-sz.Width)/2,R2.Y+(R2.Height-sz.Height)/2-1);
+                var sz=g.MeasureString("×",f);
+                g.DrawString("×",f,br,R2.X+(R2.Width-sz.Width)/2,R2.Y+(R2.Height-sz.Height)/2-1);
             }
 
         } else if (ThemeNow == 3) {
-            // ── MATOWY (Szkło) ──────────────────────────────
+            // �� MATOWY (Szk�o) ������������������������������
             if (_bgBmp != null && _cachedSz == ClientSize) g.DrawImage(_bgBmp, 0, 0);
             {
                 float _lp   = (float)Math.Sin(_time * 3.5f) * 0.16f + 0.84f;
@@ -891,14 +891,14 @@ public class AuroraDeck : Form {
             using(var pb=new SolidBrush(Color.FromArgb(fA3,180,70,70))){ g.FillRectangle(pb,R3); g.DrawRectangle(p,R3); }
             using(var f=new Font("Segoe UI",14f))
             using(var br=new SolidBrush(Color.FromArgb(220,255,255,255))){
-                var sz=g.MeasureString("x",f);
-                g.DrawString("x",f,br,R3.X+(R3.Width-sz.Width)/2,R3.Y+(R3.Height-sz.Height)/2-1);
+                var sz=g.MeasureString("×",f);
+                g.DrawString("×",f,br,R3.X+(R3.Width-sz.Width)/2,R3.Y+(R3.Height-sz.Height)/2-1);
             }
         }
     }
 }
 "@ -ReferencedAssemblies "System.Windows.Forms","System.Drawing"
-} catch { <# typ juz istnieje w tej sesji — uzywamy skompilowanej wersji #> }
+} catch { <# typ juz istnieje w tej sesji � uzywamy skompilowanej wersji #> }
 } # end if needsCompile
 
 # ===========================================================
@@ -920,13 +920,13 @@ if (-not (Test-Path $script:iconDir)) {
 $script:tileSize      = 110
 $script:isUnlocked    = $false
 $script:isEditMode    = $false
-$script:currentFolder    = "Dashboard" # Domyślnie ładujemy Stronę Główną
+$script:currentFolder    = "Dashboard" # Domy�lnie �adujemy Stron� G��wn�
 $script:sidebarWidth     = 140
 $script:sidebarPanel     = $null
 $script:folderMap        = @{}
 $script:unlockedFolders  = @{}
 
-# ─── Drag & drop kafli (tryb edycji) ──────────────────────────
+# ��� Drag & drop kafli (tryb edycji) ��������������������������
 $script:dragTile        = $null
 $script:dragGhost       = $null
 $script:dragOffset      = $null
@@ -976,7 +976,7 @@ function Save-AppConfig {
     Write-AuroraData $d
 }
 
-function Increment-AppLaunchCount {
+function Update-AppLaunchCount {
     param([string]$path)
     $absPath = ConvertTo-AbsolutePath $path
     $apps = @(Get-AppConfig)
@@ -990,7 +990,7 @@ function Increment-AppLaunchCount {
     }
     if ($changed) { 
         Save-AppConfig -entries $apps
-        if ((Get-Command Refresh-DashboardTopApps -ErrorAction SilentlyContinue)) { Refresh-DashboardTopApps }
+        if ((Get-Command Update-DashboardTopApps -ErrorAction SilentlyContinue)) { Update-DashboardTopApps }
     }
 }
 
@@ -1128,7 +1128,7 @@ function Get-LnkIcon {
     } catch { return $null }
 }
 
-function Extract-AppIcon {
+function Get-AppIcon {
     param([string]$sourcePath, [string]$appName)
     if (-not $sourcePath) { return $null }
 
@@ -1155,7 +1155,7 @@ function Extract-AppIcon {
 #   Przebudowa kafli
 # ===========================================================
 
-function Rebuild-Tiles {
+function Update-Tiles {
     $old = @($form.Controls | Where-Object { $_ -is [AppTile] })
     foreach ($t in $old) {
         if ($t.AppIcon) { try { $t.AppIcon.Dispose() } catch {} }
@@ -1173,7 +1173,7 @@ function Rebuild-Tiles {
     Invoke-TileLayout
 }
 
-function End-TileDrag {
+function Stop-TileDrag {
     param([System.Drawing.Point]$dropPoint)
 
     try {
@@ -1233,7 +1233,7 @@ function End-TileDrag {
                 }
                 Save-AppConfig -entries $newApps
             }
-            Rebuild-Tiles
+            Update-Tiles
         }
     } finally {
         if ($script:dragGhost) {
@@ -1253,7 +1253,7 @@ function Move-FolderUp {
     if ($idx -le 0) { return }
     $tmp = $list[$idx - 1]; $list[$idx - 1] = $list[$idx]; $list[$idx] = $tmp
     Save-FolderList -folders $list
-    Rebuild-FolderPanel
+    Update-FolderPanel
 }
 
 function Move-FolderDown {
@@ -1263,7 +1263,7 @@ function Move-FolderDown {
     if ($idx -lt 0 -or $idx -ge ($list.Count - 1)) { return }
     $tmp = $list[$idx + 1]; $list[$idx + 1] = $list[$idx]; $list[$idx] = $tmp
     Save-FolderList -folders $list
-    Rebuild-FolderPanel
+    Update-FolderPanel
 }
 
 function New-TileControl {
@@ -1297,7 +1297,7 @@ function New-TileControl {
         $path = $s.Tag
         try { 
             Start-Process $path 
-            Increment-AppLaunchCount -path $path
+            Update-AppLaunchCount -path $path
         } catch {
             [System.Windows.Forms.MessageBox]::Show("Nie mozna uruchomic:`n$path", "Blad uruchamiania", 'OK', 'Warning')
         }
@@ -1380,7 +1380,7 @@ function New-TileControl {
         $s.Capture = $false
         if ($script:dragGhost) {
             $dropPt = $form.PointToClient($s.PointToScreen($me.Location))
-            End-TileDrag -dropPoint $dropPt
+            Stop-TileDrag -dropPoint $dropPt
         } else {
             $script:dragTile        = $null
             $script:dragStartScreen = $null
@@ -1397,9 +1397,9 @@ function New-TileControl {
     $mSep.Name   = "mSep"
     $mOpen       = $ctxMenu.Items.Add("  Otworz lokalizacje")
     $mOpen.Name  = "mOpen"
-    $mChangeIcon = $ctxMenu.Items.Add("  Zmień ikonę")
+    $mChangeIcon = $ctxMenu.Items.Add("  Zmie� ikon�")
     $mChangeIcon.Name = "mChangeIcon"
-    $mFolderMenu = New-Object System.Windows.Forms.ToolStripMenuItem("  Przenieś do folderu")
+    $mFolderMenu = New-Object System.Windows.Forms.ToolStripMenuItem("  Przenie� do folderu")
     $mFolderMenu.Name = "mFolderMenu"
     $ctxMenu.Items.Add($mFolderMenu) | Out-Null
     $mSep2       = $ctxMenu.Items.Add("-")
@@ -1410,13 +1410,13 @@ function New-TileControl {
     $mRun.Add_Click({ 
         try { 
             Start-Process $tile.Tag 
-            Increment-AppLaunchCount -path $tile.Tag
+            Update-AppLaunchCount -path $tile.Tag
         } catch {} 
     })
 
     $mChangeIcon.Add_Click({
         $ofd = New-Object System.Windows.Forms.OpenFileDialog
-        $ofd.Title  = "Wybierz ikonę dla: $($tile.AppName)"
+        $ofd.Title  = "Wybierz ikon� dla: $($tile.AppName)"
         $ofd.Filter = "Obrazy i ikony|*.png;*.jpg;*.jpeg;*.bmp;*.ico|PNG|*.png|ICO|*.ico|Wszystkie|*.*"
         $ofd.InitialDirectory = [System.Environment]::GetFolderPath('MyPictures')
 
@@ -1438,7 +1438,7 @@ function New-TileControl {
             $bmp.Save($destPath, [System.Drawing.Imaging.ImageFormat]::Png)
             $bmp.Dispose()
         } catch {
-            [System.Windows.Forms.MessageBox]::Show("Nie można wczytać wybranego pliku:`n$srcFile", "Błąd ikony", 'OK', 'Warning') | Out-Null
+            [System.Windows.Forms.MessageBox]::Show("Nie mo�na wczyta� wybranego pliku:`n$srcFile", "B��d ikony", 'OK', 'Warning') | Out-Null
             return
         }
 
@@ -1561,7 +1561,7 @@ function Remove-AppEntry {
     $remaining = @(Get-AppConfig | Where-Object { (ConvertTo-AbsolutePath $_.Path) -ne $absAppPath })
     Save-AppConfig -entries $remaining
     Invoke-TileLayout
-    Refresh-DashboardTopApps
+    Update-DashboardTopApps
 }
 
 function Invoke-TileLayout {
@@ -1631,17 +1631,17 @@ function Set-EditMode {
     $lblSizeVal.Visible  = $enabled
     if ($enabled) { $sepLine.BackColor = [System.Drawing.Color]::FromArgb(28, 100, 255, 180) }
     else          { $sepLine.BackColor = [System.Drawing.Color]::FromArgb(0, 0, 0, 0) }
-    Rebuild-FolderPanel
+    Update-FolderPanel
 }
 
-function Handle-DragEnter {
+function Invoke-DragEnter {
     param($e)
     if ($e.Data.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
         if ($script:isUnlocked) { $e.Effect = 'Copy' } else { $e.Effect = 'None' }
     } else { $e.Effect = 'None' }
 }
 
-function Handle-DragDrop {
+function Invoke-DragDrop {
     param($e)
     if (-not $script:isUnlocked) { return }
     $files = $e.Data.GetData([System.Windows.Forms.DataFormats]::FileDrop)
@@ -1659,7 +1659,7 @@ function Handle-DragDrop {
             $iconSource = Get-LnkIcon -lnkPath $file
             if (-not $iconSource) { $iconSource = $targetPath }
         }
-        $iconFile = Extract-AppIcon -sourcePath $iconSource -appName $appName
+        $iconFile = Get-AppIcon -sourcePath $iconSource -appName $appName
         $folderToAssign = if ($script:currentFolder -eq "Wszystkie" -or $script:currentFolder -eq "Dashboard") { "" } else { $script:currentFolder }
         Add-AppEntry -path $targetPath -name $appName -iconFile $iconFile -folder $folderToAssign
     }
@@ -1715,7 +1715,7 @@ function Get-FolderNameInput {
     $txt.Text = $default
     $dlg.Controls.Add($txt)
 
-    function Make-DlgButton($label, $x, $accent) {
+    function New-DlgButton($label, $x, $accent) {
         $b = New-Object System.Windows.Forms.Button
         $b.Location = New-Object System.Drawing.Point($x, 108); $b.Size = New-Object System.Drawing.Size(90, 30)
         $b.FlatStyle = 'Flat'; $b.FlatAppearance.BorderSize = 0
@@ -1760,8 +1760,8 @@ function Get-FolderNameInput {
         return $b
     }
 
-    $btnOk = Make-DlgButton "OK" 192 $true
-    $btnCancel = Make-DlgButton "Anuluj" 98 $false
+    $btnOk = New-DlgButton "OK" 192 $true
+    $btnCancel = New-DlgButton "Anuluj" 98 $false
     $btnOk.DialogResult = 'OK'; $btnCancel.DialogResult = 'Cancel'
     $dlg.Controls.Add($btnOk); $dlg.Controls.Add($btnCancel)
     $dlg.AcceptButton = $btnOk; $dlg.CancelButton = $btnCancel
@@ -1816,7 +1816,7 @@ function New-PwdDlgButton {
 }
 
 function Show-PasswordDialog {
-    param([string]$titleText = "Hasło folderu", [string]$promptText = "Wprowadź hasło:")
+    param([string]$titleText = "Has�o folderu", [string]$promptText = "Wprowad� has�o:")
     $dlg = New-Object System.Windows.Forms.Form
     $dlg.Text            = ""
     $dlg.Size            = New-Object System.Drawing.Size(300, 158)
@@ -1872,33 +1872,33 @@ function Show-PasswordDialog {
     $dlg.Add_Shown({ $txt.Focus() })
 
     $result = $dlg.ShowDialog($form)
-    $pwd = $txt.Text; $dlg.Dispose()
-    if ($result -eq 'OK') { return $pwd } else { return $null }
+    $password = $txt.Text; $dlg.Dispose()
+    if ($result -eq 'OK') { return $password } else { return $null }
 }
 
 function Set-FolderPassword {
     param([string]$folderName)
-    $p1 = Show-PasswordDialog -titleText "Ustaw hasło — $folderName" -promptText "Nowe hasło:"
+    $p1 = Show-PasswordDialog -titleText "Ustaw has�o � $folderName" -promptText "Nowe has�o:"
     if ($null -eq $p1) { return }
-    if ($p1 -eq "") { [System.Windows.Forms.MessageBox]::Show("Hasło nie może być puste.", "Błąd", 'OK', 'Warning') | Out-Null; return }
-    $p2 = Show-PasswordDialog -titleText "Potwierdź hasło — $folderName" -promptText "Powtórz hasło:"
+    if ($p1 -eq "") { [System.Windows.Forms.MessageBox]::Show("Has�o nie mo�e by� puste.", "B��d", 'OK', 'Warning') | Out-Null; return }
+    $p2 = Show-PasswordDialog -titleText "Potwierd� has�o � $folderName" -promptText "Powt�rz has�o:"
     if ($null -eq $p2) { return }
-    if ($p1 -ne $p2) { [System.Windows.Forms.MessageBox]::Show("Hasła nie są identyczne.", "Błąd", 'OK', 'Warning') | Out-Null; return }
+    if ($p1 -ne $p2) { [System.Windows.Forms.MessageBox]::Show("Has�a nie s� identyczne.", "B��d", 'OK', 'Warning') | Out-Null; return }
     Set-FolderPasswordHash -folderName $folderName -hash (Get-SHA256Hash $p1)
     $script:unlockedFolders[$folderName] = $true
-    Rebuild-FolderPanel
+    Update-FolderPanel
 }
 
 function Remove-FolderPassword {
     param([string]$folderName)
     $hash = Get-FolderPasswordHash -folderName $folderName
     if (-not $hash) { return }
-    $p = Show-PasswordDialog -titleText "Usuń hasło — $folderName" -promptText "Aktualne hasło:"
+    $p = Show-PasswordDialog -titleText "Usu� has�o � $folderName" -promptText "Aktualne has�o:"
     if ($null -eq $p) { return }
-    if ((Get-SHA256Hash $p) -ne $hash) { [System.Windows.Forms.MessageBox]::Show("Nieprawidłowe hasło.", "Błąd", 'OK', 'Warning') | Out-Null; return }
+    if ((Get-SHA256Hash $p) -ne $hash) { [System.Windows.Forms.MessageBox]::Show("Nieprawid�owe has�o.", "B��d", 'OK', 'Warning') | Out-Null; return }
     Set-FolderPasswordHash -folderName $folderName -hash ""
     $script:unlockedFolders.Remove($folderName)
-    Rebuild-FolderPanel
+    Update-FolderPanel
 }
 
 function Test-FolderAccess {
@@ -1907,10 +1907,10 @@ function Test-FolderAccess {
     $hash = Get-FolderPasswordHash -folderName $folderName
     if (-not $hash) { return $true }
     if ($script:unlockedFolders[$folderName]) { return $true }
-    $p = Show-PasswordDialog -titleText "🔒 $folderName" -promptText "Wprowadź hasło:"
+    $p = Show-PasswordDialog -titleText "?? $folderName" -promptText "Wprowad� has�o:"
     if ($null -eq $p) { return $false }
     if ((Get-SHA256Hash $p) -eq $hash) { $script:unlockedFolders[$folderName] = $true; return $true }
-    [System.Windows.Forms.MessageBox]::Show("Nieprawidłowe hasło.", "Błąd", 'OK', 'Warning') | Out-Null
+    [System.Windows.Forms.MessageBox]::Show("Nieprawid�owe has�o.", "B��d", 'OK', 'Warning') | Out-Null
     return $false
 }
 
@@ -1933,17 +1933,17 @@ function Remove-Folder {
     $script:unlockedFolders.Remove($folderName)
 
     if ($script:currentFolder -eq $folderName) { $script:currentFolder = "Wszystkie" }
-    Rebuild-FolderPanel; Invoke-TileLayout
+    Update-FolderPanel; Invoke-TileLayout
 }
 
 function Rename-Folder {
     param([string]$folderName)
     if ($folderName -eq "Wszystkie" -or $folderName -eq "Dashboard") { return }
-    $newName = Get-FolderNameInput -titleText "Zmień nazwę folderu" -default $folderName
+    $newName = Get-FolderNameInput -titleText "Zmie� nazw� folderu" -default $folderName
     if (-not $newName -or $newName -eq $folderName) { return }
 
     $existing = Get-FolderList
-    if ($existing -contains $newName) { [System.Windows.Forms.MessageBox]::Show("Folder '$newName' już istnieje.", "Duplikat", 'OK', 'Information') | Out-Null; return }
+    if ($existing -contains $newName) { [System.Windows.Forms.MessageBox]::Show("Folder '$newName' ju� istnieje.", "Duplikat", 'OK', 'Information') | Out-Null; return }
 
     $folders = @($existing | ForEach-Object { if ($_ -eq $folderName) { $newName } else { $_ } })
     Save-FolderList -folders $folders
@@ -1954,7 +1954,7 @@ function Rename-Folder {
 
     foreach ($key in @($script:folderMap.Keys)) { if ($script:folderMap[$key] -eq $folderName) { $script:folderMap[$key] = $newName } }
     if ($script:currentFolder -eq $folderName) { $script:currentFolder = $newName }
-    Rebuild-FolderPanel; Invoke-TileLayout
+    Update-FolderPanel; Invoke-TileLayout
 }
 
 function New-FolderButton {
@@ -2042,42 +2042,42 @@ function New-FolderButton {
 
         $allFN = @(Get-FolderList); $fnIdx = [array]::IndexOf($allFN, $folderName); $fnCap = $folderName
         if ($fnIdx -gt 0) {
-            $mUp = $ctx.Items.Add("  ↑  Przenieś wyżej"); $mUp.Add_Click({ Move-FolderUp -folderName $fnCap }.GetNewClosure())
+            $mUp = $ctx.Items.Add("  ^  Przenie� wy�ej"); $mUp.Add_Click({ Move-FolderUp -folderName $fnCap }.GetNewClosure())
         }
         if ($fnIdx -lt ($allFN.Count - 1)) {
-            $mDn = $ctx.Items.Add("  ↓  Przenieś niżej"); $mDn.Add_Click({ Move-FolderDown -folderName $fnCap }.GetNewClosure())
+            $mDn = $ctx.Items.Add("  �  Przenie� ni�ej"); $mDn.Add_Click({ Move-FolderDown -folderName $fnCap }.GetNewClosure())
         }
         $ctx.Items.Add("-") | Out-Null
-        $mRen = $ctx.Items.Add("  Zmień nazwę")
+        $mRen = $ctx.Items.Add("  Zmie� nazw�")
         $hasPassword = ((Get-FolderPasswordHash -folderName $folderName) -ne "")
         if ($hasPassword) {
-            $mPwd = $ctx.Items.Add("  Zmień hasło"); $mPwd.Add_Click({ Set-FolderPassword -folderName $fnCap }.GetNewClosure())
-            $mUnpwd = $ctx.Items.Add("  Usuń hasło"); $mUnpwd.Add_Click({ Remove-FolderPassword -folderName $fnCap }.GetNewClosure())
+            $mPwd = $ctx.Items.Add("  Zmie� has�o"); $mPwd.Add_Click({ Set-FolderPassword -folderName $fnCap }.GetNewClosure())
+            $mUnpwd = $ctx.Items.Add("  Usu� has�o"); $mUnpwd.Add_Click({ Remove-FolderPassword -folderName $fnCap }.GetNewClosure())
         } else {
-            $mPwd = $ctx.Items.Add("  Ustaw hasło"); $mPwd.Add_Click({ Set-FolderPassword -folderName $fnCap }.GetNewClosure())
+            $mPwd = $ctx.Items.Add("  Ustaw has�o"); $mPwd.Add_Click({ Set-FolderPassword -folderName $fnCap }.GetNewClosure())
         }
         $ctx.Items.Add("-") | Out-Null
-        $mDel = $ctx.Items.Add("  Usuń folder"); $mRen.Add_Click({ Rename-Folder -folderName $fnCap }.GetNewClosure())
+        $mDel = $ctx.Items.Add("  Usu� folder"); $mRen.Add_Click({ Rename-Folder -folderName $fnCap }.GetNewClosure())
         $mDel.Add_Click({ Remove-Folder -folderName $fnCap }.GetNewClosure())
         $btn.ContextMenuStrip = $ctx
     }
     return $btn
 }
 
-function Rebuild-FolderPanel {
+function Update-FolderPanel {
     if (-not $script:sidebarPanel) { return }
     $old = @($script:sidebarPanel.Controls)
     foreach ($c in $old) { $script:sidebarPanel.Controls.Remove($c); $c.Dispose() }
 
     $yOff = 8; $btnH = 30; $gap = 4
     
-    # Przycisk DASHBOARD na samej górze
+    # Przycisk DASHBOARD na samej g�rze
     $isHomeSel = ($script:currentFolder -eq "Dashboard")
-    $fBtnHome = New-FolderButton -text "🏠 Strona Główna" -y $yOff -selected $isHomeSel -editMode $false -folderName "Dashboard" -isLocked $false
+    $fBtnHome = New-FolderButton -text "?? Strona G��wna" -y $yOff -selected $isHomeSel -editMode $false -folderName "Dashboard" -isLocked $false
     $fBtnHome.Name = "Dashboard"
     $fBtnHome.Add_Click({
         $script:currentFolder = "Dashboard"
-        Rebuild-FolderPanel; Invoke-TileLayout
+        Update-FolderPanel; Invoke-TileLayout
     })
     $script:sidebarPanel.Controls.Add($fBtnHome); $yOff += $btnH + $gap
     
@@ -2095,7 +2095,7 @@ function Rebuild-FolderPanel {
         $fBtn.Name = $fn
         $fBtn.Add_Click({
             $fn2 = $this.Name
-            if (Test-FolderAccess -folderName $fn2) { $script:currentFolder = $fn2; Rebuild-FolderPanel; Invoke-TileLayout }
+            if (Test-FolderAccess -folderName $fn2) { $script:currentFolder = $fn2; Update-FolderPanel; Invoke-TileLayout }
         })
         $script:sidebarPanel.Controls.Add($fBtn); $yOff += $btnH + $gap
     }
@@ -2127,13 +2127,13 @@ function Rebuild-FolderPanel {
                 $existing = Get-FolderList
                 if ($existing -contains $newName) { [System.Windows.Forms.MessageBox]::Show("Folder '$newName' juz istnieje.", "Duplikat", 'OK', 'Information') | Out-Null; return }
                 $updated = @($existing) + @($newName); Save-FolderList -folders $updated
-                $script:currentFolder = $newName; Rebuild-FolderPanel; Invoke-TileLayout
+                $script:currentFolder = $newName; Update-FolderPanel; Invoke-TileLayout
             }
         })
         $script:sidebarPanel.Controls.Add($addBtn)
     }
 
-    # ─── Klódka przypinająca panel ────────────────────────────────────────────
+    # ��� Kl�dka przypinaj�ca panel ��������������������������������������������
     $pinSize = 28
     $pinX    = ($script:sidebarWidth - $pinSize) / 2
     $script:sidebarPinBtn = New-Object System.Windows.Forms.Button
@@ -2176,7 +2176,7 @@ function Rebuild-FolderPanel {
             $baseClr = if ($pinIsLocked) { [System.Drawing.Color]::FromArgb($hA, 80, 220, 155) } else { [System.Drawing.Color]::FromArgb($lA, 40, 130, 90) }
         }
 
-        # Korpus kłódki
+        # Korpus k��dki
         $bx = [float]($cx - 5.5); $by = [float]($cy + 0.5); $bw = 11.0; $bh = 9.0
         $bp = New-Object System.Drawing.Drawing2D.GraphicsPath
         $br2 = 2.0; $bd2 = $br2 * 2
@@ -2198,7 +2198,7 @@ function Rebuild-FolderPanel {
         $g.FillEllipse($holeBr, [float]($cx - 1.6), [float]($by + $bh * 0.28), 3.2, 3.2)
         $holeBr.Dispose()
 
-        # Pałąk
+        # Pa��k
         $shackPen = New-Object System.Drawing.Pen($baseClr, 1.8)
         $shackPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
         $shackPen.EndCap   = [System.Drawing.Drawing2D.LineCap]::Round
@@ -2223,7 +2223,7 @@ function Rebuild-FolderPanel {
             $form.SuspendLayout()
             $script:sidebarAnimTimer.Start()
         }
-        Rebuild-FolderPanel
+        Update-FolderPanel
     })
 }
 
@@ -2238,7 +2238,7 @@ $form.StartPosition = 'CenterScreen'
 $form.MinimumSize   = New-Object System.Drawing.Size(650, 500)
 $form.AllowDrop     = $true
 
-# ─── DODANA IKONA Z PLIKU PNG ────────────────────────────
+# ��� DODANA IKONA Z PLIKU PNG ����������������������������
 $iconPath = Join-Path $script:scriptDir "iconb.png"
 if (Test-Path $iconPath) {
     try {
@@ -2249,7 +2249,7 @@ if (Test-Path $iconPath) {
 }
 
 # ===========================================================
-#   STRONA GŁÓWNA (DASHBOARD)
+#   STRONA G��WNA (DASHBOARD)
 # ===========================================================
 
 $script:homePanel = New-Object DBPanel
@@ -2374,7 +2374,7 @@ function Show-TodoHistoryWindow {
         $g.DrawLine($sep,1,40,($W-2),40); $sep.Dispose()
         $fnt = New-Object System.Drawing.Font('Segoe UI',9,[System.Drawing.FontStyle]::Bold)
         $br  = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb($titleARGB))
-        $g.DrawString("Historia zadań",$fnt,$br,12,12); $fnt.Dispose(); $br.Dispose()
+        $g.DrawString("Historia zada�",$fnt,$br,12,12); $fnt.Dispose(); $br.Dispose()
     }.GetNewClosure())
 
     $wh.Add_MouseDown({
@@ -2387,7 +2387,7 @@ function Show-TodoHistoryWindow {
 
     # X button
     $btnX = New-Object System.Windows.Forms.Button
-    $btnX.Text = "✕"; $btnX.Size = New-Object System.Drawing.Size(28,28)
+    $btnX.Text = "×"; $btnX.Size = New-Object System.Drawing.Size(28,28)
     $btnX.Location = New-Object System.Drawing.Point(($wh.ClientSize.Width - 32), 6)
     $btnX.FlatStyle = 'Flat'; $btnX.FlatAppearance.BorderSize = 0
     $btnX.FlatAppearance.MouseOverBackColor = [System.Drawing.Color]::FromArgb(70,200,60,60)
@@ -2397,7 +2397,7 @@ function Show-TodoHistoryWindow {
 
     # Przycisk czyszczenia historii
     $btnClear = New-Object System.Windows.Forms.Button
-    $btnClear.Text = "Wyczyść historię"
+    $btnClear.Text = "Wyczy�� histori�"
     $btnClear.Location = New-Object System.Drawing.Point(12, 380)
     $btnClear.Size = New-Object System.Drawing.Size(330, 26)
     $btnClear.FlatStyle = 'Flat'; $btnClear.FlatAppearance.BorderSize = 0
@@ -2425,7 +2425,7 @@ function Show-TodoHistoryWindow {
         $history = Get-TodoHistory
         if ($history.Count -eq 0) {
             $lbl = New-Object System.Windows.Forms.Label
-            $lbl.Text = "Brak wpisów w historii."; $lbl.AutoSize = $true
+            $lbl.Text = "Brak wpis�w w historii."; $lbl.AutoSize = $true
             $lbl.BackColor = [System.Drawing.Color]::Transparent
             $lbl.ForeColor = [System.Drawing.Color]::FromArgb($inputFgARGB)
             $lbl.Font = New-Object System.Drawing.Font('Segoe UI',9)
@@ -2441,7 +2441,7 @@ function Show-TodoHistoryWindow {
 
             # Ikona statusu
             $lblIcon = New-Object System.Windows.Forms.Label
-            $lblIcon.Text = if ($entry.Reason -eq "ukonczono") { "✓" } else { "×" }
+            $lblIcon.Text = if ($entry.Reason -eq "ukonczono") { "✓" } else { "�" }
             $lblIcon.Location = New-Object System.Drawing.Point(6,4)
             $lblIcon.Size = New-Object System.Drawing.Size(18,18)
             $lblIcon.Font = New-Object System.Drawing.Font('Segoe UI',9,[System.Drawing.FontStyle]::Bold)
@@ -2470,7 +2470,7 @@ function Show-TodoHistoryWindow {
             $lblMeta.ForeColor = [System.Drawing.Color]::FromArgb(120, [System.Drawing.Color]::FromArgb($inputFgARGB).R, [System.Drawing.Color]::FromArgb($inputFgARGB).G, [System.Drawing.Color]::FromArgb($inputFgARGB).B)
             $card.Controls.Add($lblMeta)
 
-            # Notatki (jeśli są)
+            # Notatki (je�li s�)
             if (-not [string]::IsNullOrWhiteSpace($entry.Notes)) {
                 $lblNotes = New-Object System.Windows.Forms.Label
                 $shortNote = if ($entry.Notes.Length -gt 55) { $entry.Notes.Substring(0,52) + "..." } else { $entry.Notes }
@@ -2491,7 +2491,7 @@ function Show-TodoHistoryWindow {
     & $buildHistory
 
     $btnClear.Add_Click({
-        $res = [System.Windows.Forms.MessageBox]::Show("Czy na pewno chcesz wyczyścić całą historię?","Historia",[System.Windows.Forms.MessageBoxButtons]::YesNo,[System.Windows.Forms.MessageBoxIcon]::Question)
+        $res = [System.Windows.Forms.MessageBox]::Show("Czy na pewno chcesz wyczy�ci� ca�� histori�?","Historia",[System.Windows.Forms.MessageBoxButtons]::YesNo,[System.Windows.Forms.MessageBoxIcon]::Question)
         if ($res -eq [System.Windows.Forms.DialogResult]::Yes) {
             @() | ConvertTo-Json | Set-Content $script:historyFile -Encoding UTF8
             & $buildHistory
@@ -2515,24 +2515,16 @@ function Show-TodoDetailWindow {
     switch ($thm) {
         1 { $bgTop=[System.Drawing.Color]::FromArgb(36,36,36); $bgBot=[System.Drawing.Color]::FromArgb(18,18,18)
             $borderC=[System.Drawing.Color]::FromArgb(80,120,120,120); $titleC=[System.Drawing.Color]::FromArgb(200,200,200)
-            $inputBg=[System.Drawing.Color]::FromArgb(46,46,46); $inputFg=[System.Drawing.Color]::FromArgb(200,200,200)
-            $btnBg=[System.Drawing.Color]::FromArgb(50,50,50); $btnFg=[System.Drawing.Color]::FromArgb(190,190,190)
-            $btnBord=[System.Drawing.Color]::FromArgb(90,90,90); $btnHov=[System.Drawing.Color]::FromArgb(64,64,64) }
+            $inputBg=[System.Drawing.Color]::FromArgb(46,46,46); $inputFg=[System.Drawing.Color]::FromArgb(200,200,200) }
         2 { $bgTop=[System.Drawing.Color]::FromArgb(240,240,240); $bgBot=[System.Drawing.Color]::FromArgb(220,220,220)
             $borderC=[System.Drawing.Color]::FromArgb(150,130,130,130); $titleC=[System.Drawing.Color]::FromArgb(50,50,50)
-            $inputBg=[System.Drawing.Color]::FromArgb(250,250,250); $inputFg=[System.Drawing.Color]::FromArgb(50,50,50)
-            $btnBg=[System.Drawing.Color]::FromArgb(210,210,210); $btnFg=[System.Drawing.Color]::FromArgb(40,40,40)
-            $btnBord=[System.Drawing.Color]::FromArgb(130,130,130); $btnHov=[System.Drawing.Color]::FromArgb(192,192,192) }
+            $inputBg=[System.Drawing.Color]::FromArgb(250,250,250); $inputFg=[System.Drawing.Color]::FromArgb(50,50,50) }
         3 { $bgTop=[System.Drawing.Color]::FromArgb(22,35,50); $bgBot=[System.Drawing.Color]::FromArgb(14,24,38)
             $borderC=[System.Drawing.Color]::FromArgb(80,80,130,180); $titleC=[System.Drawing.Color]::FromArgb(190,220,245)
-            $inputBg=[System.Drawing.Color]::FromArgb(25,40,55); $inputFg=[System.Drawing.Color]::FromArgb(190,220,245)
-            $btnBg=[System.Drawing.Color]::FromArgb(35,50,70); $btnFg=[System.Drawing.Color]::FromArgb(180,220,255)
-            $btnBord=[System.Drawing.Color]::FromArgb(80,130,180); $btnHov=[System.Drawing.Color]::FromArgb(50,75,105) }
+            $inputBg=[System.Drawing.Color]::FromArgb(25,40,55); $inputFg=[System.Drawing.Color]::FromArgb(190,220,245) }
         default { $bgTop=[System.Drawing.Color]::FromArgb(10,18,34); $bgBot=[System.Drawing.Color]::FromArgb(4,9,18)
             $borderC=[System.Drawing.Color]::FromArgb(70,80,200,150); $titleC=[System.Drawing.Color]::FromArgb(180,220,200)
-            $inputBg=[System.Drawing.Color]::FromArgb(10,22,38); $inputFg=[System.Drawing.Color]::FromArgb(180,255,200)
-            $btnBg=[System.Drawing.Color]::FromArgb(8,20,14); $btnFg=[System.Drawing.Color]::FromArgb(95,215,155)
-            $btnBord=[System.Drawing.Color]::FromArgb(70,200,140); $btnHov=[System.Drawing.Color]::FromArgb(14,40,26) }
+            $inputBg=[System.Drawing.Color]::FromArgb(10,22,38); $inputFg=[System.Drawing.Color]::FromArgb(180,255,200) }
     }
 
     $bgTopARGB = $bgTop.ToArgb(); $bgBotARGB = $bgBot.ToArgb()
@@ -2557,7 +2549,7 @@ function Show-TodoDetailWindow {
         $g.DrawLine($sepPen, 1, 40, ($W-2), 40); $sepPen.Dispose()
         $fnt = New-Object System.Drawing.Font('Segoe UI', 9, [System.Drawing.FontStyle]::Bold)
         $br = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb($titleARGB))
-        $g.DrawString("📋 Plan zadania", $fnt, $br, 12, 12); $fnt.Dispose(); $br.Dispose()
+        $g.DrawString("📝 Plan zadania", $fnt, $br, 12, 12); $fnt.Dispose(); $br.Dispose()
     }.GetNewClosure())
 
     $wd.Add_MouseDown({
@@ -2568,7 +2560,7 @@ function Show-TodoDetailWindow {
         }
     })
 
-    # Tytuł zadania
+    # Tytu� zadania
     $lblTask = New-Object System.Windows.Forms.Label
     $lblTask.Text = $taskText; $lblTask.Location = New-Object System.Drawing.Point(12, 50)
     $lblTask.Size = New-Object System.Drawing.Size(284, 20)
@@ -2620,7 +2612,7 @@ function Show-TodoDetailWindow {
 
     # X button
     $btnX = New-Object System.Windows.Forms.Button
-    $btnX.Text = "✕"; $btnX.Size = New-Object System.Drawing.Size(28,28)
+    $btnX.Text = "×"; $btnX.Size = New-Object System.Drawing.Size(28,28)
     $btnX.Location = New-Object System.Drawing.Point(($wd.ClientSize.Width - 32), 6)
     $btnX.FlatStyle = 'Flat'; $btnX.FlatAppearance.BorderSize = 0
     $btnX.FlatAppearance.MouseOverBackColor = [System.Drawing.Color]::FromArgb(70,200,60,60)
@@ -2671,7 +2663,7 @@ function Add-TodoRow {
     })
     Enable-DoubleBuffer $cb
 
-    # Przycisk notatek — kliknięcie otwiera okno planu zadania
+    # Przycisk notatek � klikni�cie otwiera okno planu zadania
     $btnNote = New-Object System.Windows.Forms.Button
     $btnNote.Text = "..."; $btnNote.Size = New-Object System.Drawing.Size(20, 20)
     $btnNote.Location = New-Object System.Drawing.Point(162, 3)
@@ -2722,7 +2714,7 @@ function Add-TodoRow {
     if ($save) { Save-TodoItems }
 }
 
-function Rebuild-TodoList {
+function Update-TodoList {
     $script:todoFlow.Controls.Clear()
     foreach ($item in (Get-TodoItems)) {
         $itemNotes = if ($item.Notes) { "$($item.Notes)" } else { "" }
@@ -2730,7 +2722,7 @@ function Rebuild-TodoList {
     }
 }
 
-function Apply-TodoTheme {
+function Set-TodoTheme {
     param(
         [System.Drawing.Color]$headerColor,
         [System.Drawing.Color]$inputBg,
@@ -2763,9 +2755,9 @@ $script:todoPanel.Size = New-Object System.Drawing.Size(305, 215)
 $script:todoPanel.BackColor = [System.Drawing.Color]::Transparent
 $script:homePanel.Controls.Add($script:todoPanel)
 
-# Nagłówek
+# Nag��wek
 $script:lblTodo = New-Object System.Windows.Forms.Label
-$script:lblTodo.Text = "✓ To-Do"
+$script:lblTodo.Text = "? To-Do"
 $script:lblTodo.Font = New-Object System.Drawing.Font('Segoe UI', 10, [System.Drawing.FontStyle]::Bold)
 $script:lblTodo.Location = New-Object System.Drawing.Point(0, 0)
 $script:lblTodo.AutoSize = $true
@@ -2811,7 +2803,7 @@ $script:btnTodoAdd.Font = New-Object System.Drawing.Font('Segoe UI', 12, [System
 $script:btnTodoAdd.Cursor = [System.Windows.Forms.Cursors]::Hand
 $script:todoPanel.Controls.Add($script:btnTodoAdd)
 
-# Lista zadań (scrollowalna)
+# Lista zada� (scrollowalna)
 $script:todoFlow = New-Object DBFlowPanel
 $script:todoFlow.Location = New-Object System.Drawing.Point(0, 60)
 $script:todoFlow.Size = New-Object System.Drawing.Size(300, 152)
@@ -2834,10 +2826,10 @@ $script:txtTodoInput.Add_KeyDown({
     }
 })
 
-Rebuild-TodoList
+Update-TodoList
 
 $script:lblTopApps = New-Object System.Windows.Forms.Label
-$script:lblTopApps.Text = "Często otwierane"
+$script:lblTopApps.Text = "Cz�sto otwierane"
 $script:lblTopApps.Font = New-Object System.Drawing.Font('Segoe UI', 11, [System.Drawing.FontStyle]::Bold)
 $script:lblTopApps.AutoSize = $true
 $script:lblTopApps.Location = New-Object System.Drawing.Point(380, 165)
@@ -2850,7 +2842,7 @@ $script:topAppsPanel.Size = New-Object System.Drawing.Size(345, 210)
 $script:topAppsPanel.AutoScroll = $true
 $script:homePanel.Controls.Add($script:topAppsPanel)
 
-function Refresh-DashboardTopApps {
+function Update-DashboardTopApps {
     $script:topAppsPanel.Controls.Clear()
     $apps = @(Get-AppConfig) | Where-Object { $_.LaunchCount -gt 0 } | Sort-Object LaunchCount -Descending | Select-Object -First 3
     foreach ($a in $apps) {
@@ -2911,7 +2903,7 @@ function Refresh-DashboardTopApps {
             $pn = New-Object System.Drawing.Pen($penC, 1.2)
             $g.FillPath($br, $path); $g.DrawPath($pn, $path)
 
-            if ($st.icon -ne $null) {
+            if ($null -ne $st.icon) {
                 $iconY = [int](($H - 28) / 2)
                 $g.DrawImage($st.icon, 10, $iconY, 28, 28)
             } else {
@@ -2929,12 +2921,12 @@ function Refresh-DashboardTopApps {
         }.GetNewClosure())
 
         $btn.Add_Click({
-            try { Start-Process $this.Tag.path; Increment-AppLaunchCount -path $this.Tag.path } catch {}
+            try { Start-Process $this.Tag.path; Update-AppLaunchCount -path $this.Tag.path } catch {}
         })
         $script:topAppsPanel.Controls.Add($btn)
     }
 }
-Refresh-DashboardTopApps
+Update-DashboardTopApps
 
 $script:clockTimer = New-Object System.Windows.Forms.Timer
 $script:clockTimer.Interval = 1000
@@ -2950,7 +2942,7 @@ $script:weatherClient = New-Object System.Net.WebClient
 $script:weatherClient.Encoding = [System.Text.Encoding]::UTF8
 $script:weatherClient.Headers.Add("Accept-Language", "pl")
 $script:weatherClient.add_DownloadStringCompleted({
-    param($sender, $e)
+    param($s, $e)
     if (-not $e.Error -and -not $e.Cancelled) {
         $res = $e.Result.Trim()
         if ($res -match "Unknown location") { $script:lblWeather.Text = "Nieznane miasto" }
@@ -2974,7 +2966,7 @@ function Update-Weather {
 Update-Weather
 
 # ===========================================================
-#   Pasek Boczny / Form UI (Dalsza część)
+#   Pasek Boczny / Form UI (Dalsza cz���)
 # ===========================================================
 
 $script:sidebarPanel = New-Object DBPanel
@@ -3106,7 +3098,7 @@ $pinBtn.Anchor = 'Top, Right'; $form.Controls.Add($pinBtn)
 
 if ($null -eq $script:currentTheme) { $script:currentTheme = 0 }
 
-function Apply-Theme {
+function Set-Theme {
     param([int]$theme)
     $script:currentTheme = $theme
     $form.Tag = $theme
@@ -3148,7 +3140,7 @@ function Apply-Theme {
             $script:lblDate.ForeColor = [System.Drawing.Color]::FromArgb(140,255,190)
             $script:lblWeather.ForeColor = [System.Drawing.Color]::FromArgb(100,200,255)
             $script:lblTopApps.ForeColor = [System.Drawing.Color]::FromArgb(140,255,190)
-            Apply-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(140,255,190)) -inputBg ([System.Drawing.Color]::FromArgb(10,18,34)) -inputFg ([System.Drawing.Color]::FromArgb(180,255,200)) -btnBg ([System.Drawing.Color]::FromArgb(8,20,14)) -btnFg ([System.Drawing.Color]::FromArgb(95,215,155)) -btnBorder ([System.Drawing.Color]::FromArgb(70,200,140)) -btnHover ([System.Drawing.Color]::FromArgb(14,40,26))
+            Set-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(140,255,190)) -inputBg ([System.Drawing.Color]::FromArgb(10,18,34)) -inputFg ([System.Drawing.Color]::FromArgb(180,255,200)) -btnBg ([System.Drawing.Color]::FromArgb(8,20,14)) -btnFg ([System.Drawing.Color]::FromArgb(95,215,155)) -btnBorder ([System.Drawing.Color]::FromArgb(70,200,140)) -btnHover ([System.Drawing.Color]::FromArgb(14,40,26))
         }
         1 { # Ciemny
             $bottomPanel.BackColor          = [System.Drawing.Color]::FromArgb(30, 30, 30)
@@ -3169,7 +3161,7 @@ function Apply-Theme {
             $script:lblDate.ForeColor = [System.Drawing.Color]::FromArgb(160,160,160)
             $script:lblWeather.ForeColor = [System.Drawing.Color]::FromArgb(180,180,180)
             $script:lblTopApps.ForeColor = [System.Drawing.Color]::FromArgb(180,180,180)
-            Apply-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(180,180,180)) -inputBg ([System.Drawing.Color]::FromArgb(46,46,46)) -inputFg ([System.Drawing.Color]::FromArgb(200,200,200)) -btnBg ([System.Drawing.Color]::FromArgb(50,50,50)) -btnFg ([System.Drawing.Color]::FromArgb(190,190,190)) -btnBorder ([System.Drawing.Color]::FromArgb(90,90,90)) -btnHover ([System.Drawing.Color]::FromArgb(64,64,64))
+            Set-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(180,180,180)) -inputBg ([System.Drawing.Color]::FromArgb(46,46,46)) -inputFg ([System.Drawing.Color]::FromArgb(200,200,200)) -btnBg ([System.Drawing.Color]::FromArgb(50,50,50)) -btnFg ([System.Drawing.Color]::FromArgb(190,190,190)) -btnBorder ([System.Drawing.Color]::FromArgb(90,90,90)) -btnHover ([System.Drawing.Color]::FromArgb(64,64,64))
         }
         2 { # Jasny
             $bottomPanel.BackColor          = [System.Drawing.Color]::FromArgb(218, 218, 218)
@@ -3190,9 +3182,9 @@ function Apply-Theme {
             $script:lblDate.ForeColor = [System.Drawing.Color]::FromArgb(80,80,80)
             $script:lblWeather.ForeColor = [System.Drawing.Color]::FromArgb(60,60,60)
             $script:lblTopApps.ForeColor = [System.Drawing.Color]::FromArgb(60,60,60)
-            Apply-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(60,60,60)) -inputBg ([System.Drawing.Color]::FromArgb(250,250,250)) -inputFg ([System.Drawing.Color]::FromArgb(50,50,50)) -btnBg ([System.Drawing.Color]::FromArgb(210,210,210)) -btnFg ([System.Drawing.Color]::FromArgb(40,40,40)) -btnBorder ([System.Drawing.Color]::FromArgb(130,130,130)) -btnHover ([System.Drawing.Color]::FromArgb(192,192,192))
+            Set-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(60,60,60)) -inputBg ([System.Drawing.Color]::FromArgb(250,250,250)) -inputFg ([System.Drawing.Color]::FromArgb(50,50,50)) -btnBg ([System.Drawing.Color]::FromArgb(210,210,210)) -btnFg ([System.Drawing.Color]::FromArgb(40,40,40)) -btnBorder ([System.Drawing.Color]::FromArgb(130,130,130)) -btnHover ([System.Drawing.Color]::FromArgb(192,192,192))
         }
-        3 { # Matowy (Szkło)
+        3 { # Matowy (Szk�o)
             $bottomPanel.BackColor          = [System.Drawing.Color]::FromArgb(15, 25, 35)
             $sidebarSep.BackColor           = [System.Drawing.Color]::FromArgb(40, 60, 80)
             if ($script:sidebarIndicator) { $script:sidebarIndicator.BackColor = [System.Drawing.Color]::FromArgb(80, 150, 200) }
@@ -3211,17 +3203,17 @@ function Apply-Theme {
             $script:lblDate.ForeColor = [System.Drawing.Color]::FromArgb(150,200,255)
             $script:lblWeather.ForeColor = [System.Drawing.Color]::FromArgb(180,220,255)
             $script:lblTopApps.ForeColor = [System.Drawing.Color]::FromArgb(150,200,255)
-            Apply-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(150,200,255)) -inputBg ([System.Drawing.Color]::FromArgb(25,40,55)) -inputFg ([System.Drawing.Color]::FromArgb(190,220,245)) -btnBg ([System.Drawing.Color]::FromArgb(35,50,70)) -btnFg ([System.Drawing.Color]::FromArgb(180,220,255)) -btnBorder ([System.Drawing.Color]::FromArgb(80,130,180)) -btnHover ([System.Drawing.Color]::FromArgb(50,75,105))
+            Set-TodoTheme -headerColor ([System.Drawing.Color]::FromArgb(150,200,255)) -inputBg ([System.Drawing.Color]::FromArgb(25,40,55)) -inputFg ([System.Drawing.Color]::FromArgb(190,220,245)) -btnBg ([System.Drawing.Color]::FromArgb(35,50,70)) -btnFg ([System.Drawing.Color]::FromArgb(180,220,255)) -btnBorder ([System.Drawing.Color]::FromArgb(80,130,180)) -btnHover ([System.Drawing.Color]::FromArgb(50,75,105))
         }
     }
 
     $form.Controls | Where-Object { $_ -is [AppTile] } | ForEach-Object { $_.Invalidate() }
     
-    # Odświeżenie panelu bocznego dla nowego motywu
+    # Od�wie�enie panelu bocznego dla nowego motywu
     if ($script:sidebarPanel) { $script:sidebarPanel.Invalidate() }
     
-    Rebuild-FolderPanel
-    Refresh-DashboardTopApps
+    Update-FolderPanel
+    Update-DashboardTopApps
     Save-Settings -tileSize $script:tileSize -theme $theme
 }
 
@@ -3256,10 +3248,10 @@ $script:searchBox = New-Object System.Windows.Forms.TextBox
 $script:searchBox.Size = New-Object System.Drawing.Size(210, 26); $script:searchBox.Location = New-Object System.Drawing.Point(($bottomPanel.Width - 210 - 10), 14)
 $script:searchBox.Anchor = 'Bottom, Right'; $script:searchBox.BackColor = [System.Drawing.Color]::FromArgb(8, 18, 32)
 $script:searchBox.ForeColor = [System.Drawing.Color]::FromArgb(65, 110, 90); $script:searchBox.BorderStyle = 'FixedSingle'
-$script:searchBox.Font = New-Object System.Drawing.Font('Segoe UI', 9); $script:searchBox.Text = '🔍 Szukaj aplikacji...'
+$script:searchBox.Font = New-Object System.Drawing.Font('Segoe UI', 9); $script:searchBox.Text = '?? Szukaj aplikacji...'
 $bottomPanel.Controls.Add($script:searchBox)
 
-$script:themeLabels = @("Aurora", "Ciemny", "Jasny", "Matowy (Szkło)")
+$script:themeLabels = @("Aurora", "Ciemny", "Jasny", "Matowy (Szk�o)")
 
 function Show-SettingsWindow {
     $thm = $script:currentTheme
@@ -3267,27 +3259,23 @@ function Show-SettingsWindow {
     switch ($thm) {
         1 { $bgTop = [System.Drawing.Color]::FromArgb(38, 38, 38); $bgBot = [System.Drawing.Color]::FromArgb(22, 22, 22)
             $borderC = [System.Drawing.Color]::FromArgb(80, 100, 100, 100); $sepC = [System.Drawing.Color]::FromArgb(55, 100, 100, 100)
-            $titleC = [System.Drawing.Color]::FromArgb(200, 190, 190, 190); $btn_bg = [System.Drawing.Color]::FromArgb(50, 50, 50)
-            $btn_fg = [System.Drawing.Color]::FromArgb(190, 190, 190); $btn_bord = [System.Drawing.Color]::FromArgb(90, 90, 90)
-            $btn_hov = [System.Drawing.Color]::FromArgb(64, 64, 64) 
+            $titleC = [System.Drawing.Color]::FromArgb(200, 190, 190, 190)
+            $btn_fg = [System.Drawing.Color]::FromArgb(190, 190, 190); $btn_bord = [System.Drawing.Color]::FromArgb(90, 90, 90) 
             $txt_bg = [System.Drawing.Color]::FromArgb(30, 30, 30); $txt_fg = [System.Drawing.Color]::FromArgb(220, 220, 220) }
         2 { $bgTop = [System.Drawing.Color]::FromArgb(232, 232, 232); $bgBot = [System.Drawing.Color]::FromArgb(210, 210, 210)
             $borderC = [System.Drawing.Color]::FromArgb(120, 140, 140, 140); $sepC = [System.Drawing.Color]::FromArgb(80, 140, 140, 140)
-            $titleC = [System.Drawing.Color]::FromArgb(220, 50, 50, 50); $btn_bg = [System.Drawing.Color]::FromArgb(210, 210, 210)
+            $titleC = [System.Drawing.Color]::FromArgb(220, 50, 50, 50)
             $btn_fg = [System.Drawing.Color]::FromArgb(40, 40, 40); $btn_bord = [System.Drawing.Color]::FromArgb(130, 130, 130)
-            $btn_hov = [System.Drawing.Color]::FromArgb(192, 192, 192)
             $txt_bg = [System.Drawing.Color]::FromArgb(250, 250, 250); $txt_fg = [System.Drawing.Color]::FromArgb(30, 30, 30) }
         3 { $bgTop = [System.Drawing.Color]::FromArgb(30, 45, 60); $bgBot = [System.Drawing.Color]::FromArgb(10, 20, 30)
             $borderC = [System.Drawing.Color]::FromArgb(80, 130, 180); $sepC = [System.Drawing.Color]::FromArgb(50, 90, 130)
-            $titleC = [System.Drawing.Color]::FromArgb(200, 230, 255); $btn_bg = [System.Drawing.Color]::FromArgb(35, 50, 70)
+            $titleC = [System.Drawing.Color]::FromArgb(200, 230, 255)
             $btn_fg = [System.Drawing.Color]::FromArgb(180, 220, 255); $btn_bord = [System.Drawing.Color]::FromArgb(80, 130, 180)
-            $btn_hov = [System.Drawing.Color]::FromArgb(50, 75, 105)
             $txt_bg = [System.Drawing.Color]::FromArgb(20, 30, 45); $txt_fg = [System.Drawing.Color]::FromArgb(200, 230, 255) }
         default { $bgTop = [System.Drawing.Color]::FromArgb(10, 18, 34); $bgBot = [System.Drawing.Color]::FromArgb(4, 9, 18)
             $borderC = [System.Drawing.Color]::FromArgb(70, 80, 200, 150); $sepC = [System.Drawing.Color]::FromArgb(35, 80, 200, 150)
-            $titleC = [System.Drawing.Color]::FromArgb(200, 180, 220, 200); $btn_bg = [System.Drawing.Color]::FromArgb(8, 20, 14)
+            $titleC = [System.Drawing.Color]::FromArgb(200, 180, 220, 200)
             $btn_fg = [System.Drawing.Color]::FromArgb(95, 215, 155); $btn_bord = [System.Drawing.Color]::FromArgb(70, 200, 140)
-            $btn_hov = [System.Drawing.Color]::FromArgb(14, 40, 26)
             $txt_bg = [System.Drawing.Color]::FromArgb(10, 22, 38); $txt_fg = [System.Drawing.Color]::FromArgb(180, 255, 200) }
     }
 
@@ -3323,7 +3311,7 @@ function Show-SettingsWindow {
     })
 
     $btnClose = New-Object System.Windows.Forms.Button
-    $btnClose.Text = "✕"; $btnClose.Size = New-Object System.Drawing.Size(28, 28)
+    $btnClose.Text = "×"; $btnClose.Size = New-Object System.Drawing.Size(28, 28)
     $btnClose.Location = New-Object System.Drawing.Point(($sw.ClientSize.Width - 32), 5)
     $btnClose.FlatStyle = 'Flat'; $btnClose.FlatAppearance.BorderSize = 0
     $btnClose.FlatAppearance.MouseOverBackColor = [System.Drawing.Color]::FromArgb(70, 200, 60, 60)
@@ -3348,7 +3336,7 @@ function Show-SettingsWindow {
     $sw.Controls.Add($btnT)
     $btnT.Add_Click({
         $script:currentTheme = ($script:currentTheme + 1) % 4
-        $btnT.Text = $script:themeLabels[$script:currentTheme]; Apply-Theme -theme $script:currentTheme
+        $btnT.Text = $script:themeLabels[$script:currentTheme]; Set-Theme -theme $script:currentTheme
     })
 
     $btnLC = & $mkSwBtn "Wczytaj config" 96
@@ -3362,7 +3350,7 @@ function Show-SettingsWindow {
             $script:dataFile = $ofd.FileName
             $newSize = (Get-Settings).TileSize
             if ($newSize -ge 70 -and $newSize -le 180) { $script:tileSize = $newSize; $sizeSlider.Value = $newSize; $lblSizeVal.Text = "$newSize px" }
-            Rebuild-Tiles; Rebuild-FolderPanel; Update-Weather
+            Update-Tiles; Update-FolderPanel; Update-Weather
         }
         $ofd.Dispose()
     })
@@ -3378,7 +3366,7 @@ function Show-SettingsWindow {
     $txtCity.Font = New-Object System.Drawing.Font('Segoe UI', 10); $txtCity.Text = (Get-Settings).City
     $sw.Controls.Add($txtCity)
 
-    $btnSaveCity = & $mkSwBtn "Zapisz i Odśwież Pogodę" 200
+    $btnSaveCity = & $mkSwBtn "Zapisz i Od�wie� Pogod�" 200
     $sw.Controls.Add($btnSaveCity)
     $btnSaveCity.Add_Click({
         Save-Settings -tileSize $script:tileSize -theme $script:currentTheme -city $txtCity.Text
@@ -3410,7 +3398,7 @@ $script:searchBox.Add_GotFocus({
 $script:searchBox.Add_LostFocus({
     if ($script:searchBox.Text.Trim() -eq '') {
         $script:searchPlaceholder = $true; $script:searchBox.ForeColor = [System.Drawing.Color]::FromArgb(65, 110, 90)
-        $script:searchBox.Text = '🔍 Szukaj aplikacji...'
+        $script:searchBox.Text = '?? Szukaj aplikacji...'
     }
 })
 $script:searchBox.add_TextChanged({ Invoke-TileLayout })
@@ -3427,16 +3415,14 @@ $lockBtn.add_LockChanged({
     }
 })
 $sizeSlider.add_ValueChanged({ $v = $sizeSlider.Value; $lblSizeVal.Text = "$v px"; Set-TileSize -size $v; Save-Settings -tileSize $v })
-$form.Add_DragEnter({ Handle-DragEnter -e $_ }); $form.Add_DragDrop({ Handle-DragDrop -e $_ })
+$form.Add_DragEnter({ Invoke-DragEnter -e $_ }); $form.Add_DragDrop({ Invoke-DragDrop -e $_ })
 $form.Add_Resize({ $script:btnSettings.Location = New-Object System.Drawing.Point((($bottomPanel.Width - 130) / 2), 13); Invoke-TileLayout })
 
 $savedApps = Get-AppConfig
 foreach ($entry in $savedApps) { if ($entry.Path) { $tile = New-TileControl $entry; $form.Controls.Add($tile) } }
 
-Rebuild-FolderPanel; Invoke-TileLayout
+Update-FolderPanel; Invoke-TileLayout
 $script:sidebarPanel.BringToFront(); $script:sidebarIndicator.BringToFront()
-Apply-Theme -theme $script:currentTheme
+Set-Theme -theme $script:currentTheme
 
 [System.Windows.Forms.Application]::Run($form)
-
-ale jaja

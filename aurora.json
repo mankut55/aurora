@@ -1,0 +1,68 @@
+﻿{
+    "settings":  {
+                     "TileSize":  70,
+                     "Theme":  0,
+                     "City":  ""
+                 },
+    "folders":  [
+                    {
+                        "Name":  "Praca",
+                        "PasswordHash":  ""
+                    },
+                    {
+                        "Name":  "Zabawa",
+                        "PasswordHash":  ""
+                    }
+                ],
+    "apps":  [
+                 {
+                     "Name":  "Company of Heroes 2",
+                     "Path":  "C:\\Users\\48508\\Desktop\\Company of Heroes 2.url",
+                     "IconFile":  ".\\deck_icons\\Company of Heroes 2.png",
+                     "Folder":  "Zabawa",
+                     "LaunchCount":  0
+                 },
+                 {
+                     "Name":  "Battlefield 1",
+                     "Path":  "D:\\Program Files\\Battlefield 1\\bf1.exe",
+                     "IconFile":  ".\\deck_icons\\Battlefield 1.png",
+                     "Folder":  "Zabawa",
+                     "LaunchCount":  0
+                 },
+                 {
+                     "Name":  "DiRT Rally",
+                     "Path":  "C:\\Users\\48508\\Desktop\\DiRT Rally.url",
+                     "IconFile":  ".\\deck_icons\\DiRT Rally.png",
+                     "Folder":  "Zabawa",
+                     "LaunchCount":  0
+                 },
+                 {
+                     "Name":  "Paradox Launcher v2",
+                     "Path":  "C:\\Users\\48508\\AppData\\Local\\Programs\\Paradox Interactive\\launcher\\bootstrapper-v2.exe",
+                     "IconFile":  ".\\deck_icons\\Paradox Launcher v2.png",
+                     "Folder":  "Praca",
+                     "LaunchCount":  0
+                 },
+                 {
+                     "Name":  "HELLDIVERS™ 2",
+                     "Path":  "C:\\Users\\48508\\Desktop\\HELLDIVERS™ 2.url",
+                     "IconFile":  ".\\deck_icons\\HELLDIVERS™ 2.png",
+                     "Folder":  "Praca",
+                     "LaunchCount":  0
+                 },
+                 {
+                     "Name":  "wyslac",
+                     "Path":  "C:\\Users\\48508\\Desktop\\wyslac.jpg",
+                     "IconFile":  ".\\deck_icons\\wyslac.png",
+                     "Folder":  "Praca",
+                     "LaunchCount":  1
+                 },
+                 {
+                     "Name":  "aurora",
+                     "Path":  "C:\\Users\\48508\\Desktop\\aurora.json",
+                     "IconFile":  ".\\deck_icons\\aurora.png",
+                     "Folder":  "Praca",
+                     "LaunchCount":  0
+                 }
+             ]
+}
