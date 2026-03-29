@@ -2397,7 +2397,7 @@ function Show-TodoHistoryWindow {
 
     # Przycisk czyszczenia historii
     $btnClear = New-Object System.Windows.Forms.Button
-    $btnClear.Text = "Wyczy�� histori�"
+    $btnClear.Text = "Wyczyść historię"
     $btnClear.Location = New-Object System.Drawing.Point(12, 380)
     $btnClear.Size = New-Object System.Drawing.Size(330, 26)
     $btnClear.FlatStyle = 'Flat'; $btnClear.FlatAppearance.BorderSize = 0
@@ -2491,9 +2491,9 @@ function Show-TodoHistoryWindow {
     & $buildHistory
 
     $btnClear.Add_Click({
-        $res = [System.Windows.Forms.MessageBox]::Show("Czy na pewno chcesz wyczy�ci� ca�� histori�?","Historia",[System.Windows.Forms.MessageBoxButtons]::YesNo,[System.Windows.Forms.MessageBoxIcon]::Question)
+        $res = [System.Windows.Forms.MessageBox]::Show("Czy na pewno chcesz wyczyścić całą historię?","Historia",[System.Windows.Forms.MessageBoxButtons]::YesNo,[System.Windows.Forms.MessageBoxIcon]::Question)
         if ($res -eq [System.Windows.Forms.DialogResult]::Yes) {
-            @() | ConvertTo-Json | Set-Content $script:historyFile -Encoding UTF8
+            "[]" | Set-Content $script:historyFile -Encoding UTF8
             & $buildHistory
         }
     })
