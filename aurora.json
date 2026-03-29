@@ -1,7 +1,7 @@
 ﻿{
     "settings":  {
                      "TileSize":  70,
-                     "Theme":  0,
+                     "Theme":  1,
                      "City":  ""
                  },
     "folders":  [

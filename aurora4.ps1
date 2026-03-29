@@ -2249,7 +2249,7 @@ if (Test-Path $iconPath) {
 }
 
 # ===========================================================
-#   STRONA G��WNA (DASHBOARD)
+#   STRONA GŁÓWNA (DASHBOARD)
 # ===========================================================
 
 $script:homePanel = New-Object DBPanel
@@ -2395,6 +2395,14 @@ function Show-TodoHistoryWindow {
     $btnX.Font = New-Object System.Drawing.Font('Segoe UI',9); $btnX.Cursor = [System.Windows.Forms.Cursors]::Hand
     $wh.Controls.Add($btnX); $btnX.Add_Click({ $wh.Close() })
 
+    # Pole wyszukiwania
+    $searchBox = New-Object System.Windows.Forms.TextBox
+    $searchBox.Location = New-Object System.Drawing.Point(12, 50)
+    $searchBox.Size = New-Object System.Drawing.Size(320, 24)
+    $searchBox.BackColor = $inputBg; $searchBox.ForeColor = $inputFg; $searchBox.BorderStyle = 'FixedSingle'
+    $searchBox.Font = New-Object System.Drawing.Font('Segoe UI', 9)
+    $wh.Controls.Add($searchBox)
+
     # Przycisk czyszczenia historii
     $btnClear = New-Object System.Windows.Forms.Button
     $btnClear.Text = "Wyczyść historię"
@@ -2409,8 +2417,8 @@ function Show-TodoHistoryWindow {
 
     # Panel scrollowalny z wpisami historii
     $flow = New-Object DBFlowPanel
-    $flow.Location = New-Object System.Drawing.Point(10, 48)
-    $flow.Size = New-Object System.Drawing.Size(334, 324)
+    $flow.Location = New-Object System.Drawing.Point(10, 80)
+    $flow.Size = New-Object System.Drawing.Size(334, 292)
     $flow.AutoScroll = $true; $flow.FlowDirection = 'TopDown'
     $flow.WrapContents = $false; $flow.BackColor = [System.Drawing.Color]::Transparent
     $wh.Controls.Add($flow)
@@ -2423,9 +2431,14 @@ function Show-TodoHistoryWindow {
     $buildHistory = {
         $flow.Controls.Clear()
         $history = Get-TodoHistory
+        $searchText = $searchBox.Text.ToLower()
+        if ($searchText -ne "") {
+            $history = $history | Where-Object { $_.Text.ToLower().Contains($searchText) -or ($_.Notes -and $_.Notes.ToLower().Contains($searchText)) }
+        }
         if ($history.Count -eq 0) {
             $lbl = New-Object System.Windows.Forms.Label
-            $lbl.Text = "Brak wpisów w historii."; $lbl.AutoSize = $true
+            $lbl.Text = if ($searchText -ne "") { "Brak wyników wyszukiwania." } else { "Brak wpisów w historii." }
+            $lbl.AutoSize = $true
             $lbl.BackColor = [System.Drawing.Color]::Transparent
             $lbl.ForeColor = [System.Drawing.Color]::FromArgb($inputFgARGB)
             $lbl.Font = New-Object System.Drawing.Font('Segoe UI',9)
@@ -2489,6 +2502,8 @@ function Show-TodoHistoryWindow {
     }
 
     & $buildHistory
+
+    $searchBox.Add_TextChanged({ & $buildHistory })
 
     $btnClear.Add_Click({
         $res = [System.Windows.Forms.MessageBox]::Show("Czy na pewno chcesz wyczyścić całą historię?","Historia",[System.Windows.Forms.MessageBoxButtons]::YesNo,[System.Windows.Forms.MessageBoxIcon]::Question)
@@ -3400,7 +3415,7 @@ $script:searchBox.Add_GotFocus({
 $script:searchBox.Add_LostFocus({
     if ($script:searchBox.Text.Trim() -eq '') {
         $script:searchPlaceholder = $true; $script:searchBox.ForeColor = [System.Drawing.Color]::FromArgb(65, 110, 90)
-        $script:searchBox.Text = '?? Szukaj aplikacji...'
+        $script:searchBox.Text = 'Szukaj aplikacji...'
     }
 })
 $script:searchBox.add_TextChanged({ Invoke-TileLayout })
