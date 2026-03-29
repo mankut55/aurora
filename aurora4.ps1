@@ -2,11 +2,11 @@
 Add-Type -AssemblyName System.Drawing
 
 # ===========================================================
-#   C# � WinAPI + LockButton + SimpleSlider + AppTile + AuroraDeck
+#   C# + WinAPI + LockButton + SimpleSlider + AppTile + AuroraDeck
 # ===========================================================
 $_needsCompile = $false
 try {
-    # Sprawdz czy mamy nowa wersje z obsuga motywow (pole DECK_VER)
+    # Sprawdzę czy mamy nową wersję z obsługą motywów (pole DECK_VER)
     if (-not ([System.Management.Automation.PSTypeName]'AuroraDeck').Type) { $_needsCompile = $true }
     elseif ([AuroraDeck]::DECK_VER -ne "magnet_glass6") { $_needsCompile = $true }
 } catch { $_needsCompile = $true }
@@ -28,7 +28,7 @@ public class WinAPI {
     public const int HTCAPTION = 0x2;
 }
 
-// ��� Double Buffered Panels (Fix Migotania) ����������������������������������
+// ========== Double Buffered Panels (Fix Migotania) =========================
 public class DBPanel : Panel {
     public DBPanel() {
         SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint |
@@ -2073,7 +2073,7 @@ function Update-FolderPanel {
     
     # Przycisk DASHBOARD na samej g�rze
     $isHomeSel = ($script:currentFolder -eq "Dashboard")
-    $fBtnHome = New-FolderButton -text "?? Strona G��wna" -y $yOff -selected $isHomeSel -editMode $false -folderName "Dashboard" -isLocked $false
+    $fBtnHome = New-FolderButton -text "Strona Główna" -y $yOff -selected $isHomeSel -editMode $false -folderName "Dashboard" -isLocked $false
     $fBtnHome.Name = "Dashboard"
     $fBtnHome.Add_Click({
         $script:currentFolder = "Dashboard"
@@ -2374,7 +2374,7 @@ function Show-TodoHistoryWindow {
         $g.DrawLine($sep,1,40,($W-2),40); $sep.Dispose()
         $fnt = New-Object System.Drawing.Font('Segoe UI',9,[System.Drawing.FontStyle]::Bold)
         $br  = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb($titleARGB))
-        $g.DrawString("Historia zada�",$fnt,$br,12,12); $fnt.Dispose(); $br.Dispose()
+        $g.DrawString("Historia zadań",$fnt,$br,12,12); $fnt.Dispose(); $br.Dispose()
     }.GetNewClosure())
 
     $wh.Add_MouseDown({
@@ -2425,7 +2425,7 @@ function Show-TodoHistoryWindow {
         $history = Get-TodoHistory
         if ($history.Count -eq 0) {
             $lbl = New-Object System.Windows.Forms.Label
-            $lbl.Text = "Brak wpis�w w historii."; $lbl.AutoSize = $true
+            $lbl.Text = "Brak wpisów w historii."; $lbl.AutoSize = $true
             $lbl.BackColor = [System.Drawing.Color]::Transparent
             $lbl.ForeColor = [System.Drawing.Color]::FromArgb($inputFgARGB)
             $lbl.Font = New-Object System.Drawing.Font('Segoe UI',9)
@@ -2757,7 +2757,7 @@ $script:homePanel.Controls.Add($script:todoPanel)
 
 # Nag��wek
 $script:lblTodo = New-Object System.Windows.Forms.Label
-$script:lblTodo.Text = "? To-Do"
+$script:lblTodo.Text = "To-Do"
 $script:lblTodo.Font = New-Object System.Drawing.Font('Segoe UI', 10, [System.Drawing.FontStyle]::Bold)
 $script:lblTodo.Location = New-Object System.Drawing.Point(0, 0)
 $script:lblTodo.AutoSize = $true
@@ -2829,7 +2829,7 @@ $script:txtTodoInput.Add_KeyDown({
 Update-TodoList
 
 $script:lblTopApps = New-Object System.Windows.Forms.Label
-$script:lblTopApps.Text = "Cz�sto otwierane"
+$script:lblTopApps.Text = "Często otwierane"
 $script:lblTopApps.Font = New-Object System.Drawing.Font('Segoe UI', 11, [System.Drawing.FontStyle]::Bold)
 $script:lblTopApps.AutoSize = $true
 $script:lblTopApps.Location = New-Object System.Drawing.Point(380, 165)
@@ -3366,7 +3366,7 @@ function Show-SettingsWindow {
     $txtCity.Font = New-Object System.Drawing.Font('Segoe UI', 10); $txtCity.Text = (Get-Settings).City
     $sw.Controls.Add($txtCity)
 
-    $btnSaveCity = & $mkSwBtn "Zapisz i Od�wie� Pogod�" 200
+    $btnSaveCity = & $mkSwBtn "Zapisz i Odśwież Pogodę" 200
     $sw.Controls.Add($btnSaveCity)
     $btnSaveCity.Add_Click({
         Save-Settings -tileSize $script:tileSize -theme $script:currentTheme -city $txtCity.Text
@@ -3426,3 +3426,4 @@ $script:sidebarPanel.BringToFront(); $script:sidebarIndicator.BringToFront()
 Set-Theme -theme $script:currentTheme
 
 [System.Windows.Forms.Application]::Run($form)
+
